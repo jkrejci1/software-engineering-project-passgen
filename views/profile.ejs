@@ -1,0 +1,71 @@
+<!--Final Project HTML-->
+<!--This will only show up as a tab, and have user access when a user is logged in or it will redirect them to login-->
+
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet"
+        type="text/css"
+        href="profile.css">
+    <title>Password Generator</title>
+ </head>
+ <body>
+
+    <!--Title-->
+    <!--<img class="logo" src="/images/teamLogo.png" alt="Team Logo"/>-->
+    <header>
+    <div class="flexbox-container">
+        <div class="flexbox-item flexbox-item-1">
+            <!--Title-->
+            <h1 id="title">Profile</h1>
+        </div>
+    </div>
+
+    <!--Github information-->
+    <a class="github" href="https://github.com/MikeKarnezisLewisU/FinalProjectScrumandCoke"><img src="github.svg"></a>
+
+    <!--Header for the home page-->
+    <h1 id="heading">User Profile</h1>
+    </header>
+
+    <!--Description of the application-->
+    <p id="describe">Welcome to your user profile page <%= user.email %>!<br>
+                     This is where you can find information about passwords<br>
+                     that you've saved.
+                    </p>
+
+    <!--Navigation Bar-->
+    <ul class="horzbar">
+        <li><a href="/" id="home">Home</a></li>
+        <li><a href="/generate" id="generate">Generate</a></li>
+        <li><a href="/about" id="about">About</a></li>
+        
+        <!--To go to the login page or signup page (need to make conditionally using ejs properties)-->
+        <% if (user) { %>
+            <li><a href="/profile" id="profile">Profile</a></li>
+            <li><a href="/logout" id="logout">Logout</a></li>
+        <% } else { %>
+            <li><a href="/login" id="login">Login</a></li>
+            <li><a href="/signup" id="signup">Sign Up</a></li>
+        <% } %>
+    </ul>
+
+    <!--Welcome the current user if they exist (must be conditional then)-->
+    <% if (user) { %>
+        <p id="welcomeUser">Welcome, <%= user.email %></p>
+
+        <!--For loop to loop through the passwords making a list of them-->
+        <table class="passwordList" style="width:10%;">
+            <tr>
+                <td id="listHeader">Saved Passwords</td>
+            </tr>
+            <% for(var i=0; i<user.savedPass.length; i++) {%>
+                <tr>
+                    <td id="passwords"><%= user.savedPass[i] %></td>
+                </tr>
+            <% } %>
+        </table>
+    <% } %>
+   </body>
+</html>

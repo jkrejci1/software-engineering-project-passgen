@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8", name="viewport" content="width=device-width, initial-scale=1.0">
+        
+      <link rel="stylesheet"
+        type="text/css"
+        href="health.css">
+        <title>Node Migration</title>
+        
+    </head>
+    <body>
+        <!--Health Insurance Calculator Header-->
+        <div class="title">
+            <div class="header">
+                <h1>Health Insurance Risk Calculator</h1>
+            </div>
+            <div class="intro">
+                <p>This program helps you classify health insurance
+                    based on their risk<br>level. That is determined
+                    by their health. Their health is judged in terms<br>
+                    of their body-mass index, blood pressure, age,
+                    and family history of disease.</p>
+            </div>
+        </div>
+
+        <!--Main Body where user will give information for us to use-->
+        <!--We will ask user for age, weight (lbs), height (inches), sytolic BP and diastolic BP using-->
+        <!--We will use this user input for calculations; we'll need to do conversions of inches -> meters sq, and pounds -> kg's for BMI calculation remember!-->
+
+        <!--For the questions involving age, height, BP-->
+        <div class="calculator">
+            <!--We need to get input from the user for needed information; I'll use txt boxes for them to enter information-->
+            <!--Remember we need to use IDs for the inputs so we can use them in JS-->
+            <!--Get the persons age-->
+            <label>Enter the person's age:</label>
+                <select id="ageID">
+                    <option value="0">Less than 30</option>
+                    <option value="10">30 to 45</option>
+                    <option value="20">45 to 60</option>
+                    <option value="30">Greater than 60</option>
+                </select>
+                <br>
+
+            <!--Get the persons height-->
+            <label>Enter the person's height (inches):</label>
+                <select id="heightID">
+                    <option value="54">4'6"</option>
+                    <option value="55">4'7"</option>
+                    <option value="56">4'8"</option>
+                    <option value="57">4'9"</option>
+                    <option value="58">4'10"</option>
+                    <option value="59">4'11"</option>
+                    <option value="60">5'0"</option>
+                    <option value="61">5'1"</option>
+                    <option value="62">5'2"</option>
+                    <option value="63">5'3"</option>		
+                    <option value="64">5'4"</option>
+                    <option value="65">5'5"</option>	
+                    <option value="66">5'6"</option>
+                    <option value="67">5'7"</option>	
+                    <option value="68">5'8"</option>
+                    <option value="69">5'9"</option>	
+                    <option value="70">5'10"</option>
+                    <option value="71">5'11"</option>	
+                    <option value="72">6'0"</option>
+                    <option value="73">6'1"</option>
+                    <option value="74">6'2"</option>
+                    <option value="75">6'3"</option>
+                    <option value="76">6'4"</option>
+                    <option value="77">6'5"</option>
+                    <option value="78">6'6"</option>
+                    <option value="79">6'7"</option>
+                    <option value="80">6'8"</option>
+                    <option value="81">6'9"</option>
+                    <option value="82">6'10"</option>
+                    <option value="83">6'11"</option>
+                </select>
+            <br>
+            <!--Get the persons weight-->
+            <label>Enter the person's weight (lbs):</label>
+            <input type="text" id="weight" name="weight"><br>
+
+            <!--Get the persons systolic BP-->
+            <label>Enter the person's systolic blood pressure:</label>
+            <input type="text" id="sysbp" name="sysbp"><br>
+
+            <!--Get the persons diastolic BP-->
+            <label>Enter the person's diastolic blood pressure:</label>
+            <input type="text" id="dibp" name="dibp"><br>
+
+            <!--Now ask the yes or no questions can use radio buttons-->
+            <p>Does this person have a history of...<br></p>
+
+            <label>Do you have diabetes?</label><br />
+                <select id="diabetesID">
+                    <option value="0">no</option>
+                    <option value="10">yes</option>
+                </select>
+            <br /><br />
+
+            <label>Do you have cancer?</label><br />
+                <select id="cancerID">
+                    <option value="0">no</option>
+                    <option value="10">yes</option>
+                </select>
+            <br /><br />
+
+            <label>Do you have Alzheimers?</label><br />
+                <select id="alzheimersID">
+                    <option value="0">no</option>
+                    <option value="10">yes</option>
+                </select>
+            <br><br>
+            <!--Button used to trigure the calculation-->
+            <button type="button" onclick="calculateRisk()">Calculate</button>
+            <div id="bmi-result">BMI GOES HERE</div>
+        </div>
+
+        <!--After the above is entered we need to calculate the score and ask if the user wants to do another calculation-->
+        <!--This is where the javascript comes in; need to made what's above into a loop that repeats when the user enters he wants to do another calculation-->
+        <!--As well as doing the calculations server side, and displaying the information needed to the user-->
+        <!--We'll do the client side JS here-->
+        <script>
+        
+        //Make this a do while loop to always go through once, and then again when the user wants to continue POSSIBLE IDEA
+        
+        //Function for calculating the risk
+        async function calculateRisk() {
+
+           //IF YOU WANT TO RETURN A VALUE FROM ONE OF THE ASYNC FUNCTIONS YOU NEED TO USE "AWAIT" WHILE CALLING IT I HAD MAJOR PROBLEM WITH THIS!
+           const StrBMI = await calculateBMI()
+           console.log("BMI out of function:", StrBMI)
+           document.getElementById("bmi-result").innerHTML = StrBMI
+
+           //Convert the string version of BMI to a number that we can use
+           const numBMI = parseFloat(StrBMI)
+           console.log("Number BMI:", numBMI) //Check to make sure it converted
+
+
+           //
+           //const StrBloodPressure = await calculateBloodPressure() 
+           //console.log("Blood Pressure out of function:", StrBloodPressure)
+           //document.getElementById("bloodpressure-result").innerHTML = StrBMI
+
+           //Now we need to call the function that will do comparisons to get the health point values
+            const riskStatus = calculateRiskPoints(numBMI)
+        }
+
+        //Function for calculating the BMI
+        async function calculateBMI() {
+
+            //Get height value (will be in inches), and weight value
+            const heightInch = document.getElementById("heightID").value
+            const weight = document.getElementById("weight").value
+            /* 
+                    done by Michael Karnezis
+                    I was intending to put all of the information into one functions because
+                    all calculations need to be done on the server side so this only requires
+                    the information to be parsed. 
+                    but I seem to have trouble running it locally to test any of my code
+
+            const alzheimers = document.getElementById("alzheimersID").value
+            const cancer = document.getElementById("cancerID").value
+            const diabetes = document.getElementById("diabetesID").value
+            const age = document.getElementById()("ageID").value
+            */
+
+            // Approximate height and weight for a man in the US. (need to trim weight just incase user put spaces at beginning)
+            const response = await fetch('/calculate-bmi?inches='+heightInch+'&lbs='+weight.trim())
+            const responseText = await response.text()
+            console.log("BMI in the BMI function:",responseText)
+            return responseText
+        }
+
+        //Function for calculating Blood Pressure 
+        async function calculateBloodPressure(){
+            const response = await fetch('/calculate-bp?systolic='+sysBlood+'&diastolic'+diaBlood)
+            const responseText = await response.text()
+            return responseText
+        }
+
+
+        //Function for getting the points
+        async function calculateRiskPoints(BMI) {
+            totalPoints = 0 //We will add to this number through our comparisons
+            //Get the values we need we already have BMI, we need age and the blood pressure values
+            const age = document.getElementById("ageID").value
+
+
+            // Retrieving blood pressure values and their correspondent points 
+            const sysBlood = document.getElementById("sysbp").value
+            const diaBlood = document.getElementById("dibp").value
+            const bpCategoryPoints = 0 
+
+
+            if ((sysBlood > 180) || (diaBlood >= 120)) {
+                //crisis
+                const bpCategoryPoints = 100
+                console.log("Blood Pressure Crisis Stage adds " + bpCategoryPoints + " points")
+                totalPoints += bpCategoryPoints
+            }
+
+            else if ((sysBlood >= 140) || (diaBlood >= 90)) {
+                //stage 2
+                const bpCategoryPoints = 75
+                console.log("Blood Pressure Stage Two adds " + bpCategoryPoints + " points")
+                totalPoints += bpCategoryPoints
+            }
+
+            else if ((sysBlood >= 130 && sysBlood <= 139) || (diaBlood >= 90)) {
+                //stage 1
+                const bpCategoryPoints = 30
+                console.log("Blood Pressure Stage One adds " + bpCategoryPoints + " points")
+                totalPoints += bpCategoryPoints
+            }
+
+            else if ((sysBlood >= 130 && sysBlood <= 139) || (diaBlood >= 90)) {
+                //elevated 
+                const bpCategoryPoints = 15
+                console.log("Blood Pressure Elevated Stage adds " + bpCategoryPoints + " points")
+                totalPoints += bpCategoryPoints
+            }
+
+            else {
+                console.log("Blood Pressure Normal Stage adds " + bpCategoryPoints + " points")
+            }
+
+            
+
+            //Also need the decisions made for the family history (0 means no, 10 means yes)
+            const diabetes = document.getElementById("diabetesID").value
+            const cancer = document.getElementById("cancerID").value
+            const alzheimers = document.getElementById("alzheimersID").value
+
+            //Remember our BMI value
+            const BMIVal = BMI
+
+            //Check that we got all the right values
+            /*NOTE: IF YOU CHECK THE CONSOLE ON YOUR WEBPAGE YOU'LL NOTICE THAT FOR THE VALUES
+              DIABETES, CANCER, AND ALZHEIMERS WILL BE EITHER 0 OR 10
+              
+              10 --> Selected YES
+              0 --> Selected NO
+
+              OTHERS:
+              BMIval --> Their BMI
+              Blood Pressures --> What they put as their blood pressure
+              age --> The Risk Points associated with that age group from the directions
+            */
+            console.log(BMIVal, age, 'Systolic Blood Pressure Value: ' + sysBlood, 'Diastolic Blood Pressure Value: ' + diaBlood, diabetes, cancer, alzheimers)
+            console.log('Current accumulated points: ' + totalPoints)
+
+            
+        }
+        </script>
+    </body>
+</html>

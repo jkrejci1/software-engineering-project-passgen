@@ -1,0 +1,107 @@
+<!--EJS for the signup page-->
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet"
+        type="text/css"
+        href="login.css">
+    <title>Login page</title>
+ </head>
+    <body>
+    <header>
+        <div class="flexbox-container">
+            <div class="flexbox-item flexbox-item-1">
+                <h1 id="title">Login</h1>  
+            </div>
+        </div>
+    </header>
+    <!--Github information-->
+    <a class="github" href="https://github.com/MikeKarnezisLewisU/FinalProjectScrumandCoke"><img src="github.svg"></a>
+
+     <!--<img class="logo" src="/images/teamLogo.png" alt="Team Logo"/>-->
+    <!--Navigation Bar-->
+    <ul class="horzbar">
+        <li><a href="/" id="home">Home</a></li>
+        <li><a href="/generate" id="generate">Generate</a></li>
+        <li><a href="/about" id="about">About</a></li>
+        
+        <!--To go to the login page or signup page (need to make conditionally using ejs properties)-->
+        <% if (user) { %>
+            <li><a href="/profile" id="profile">Profile</a></li>
+            <li><a href="/logout" id="logout">Logout</a></li>
+        <% } else { %>
+            <li><a href="/login" id="login">Login</a></li>
+            <li><a href="/signup" id="signup">Sign Up</a></li>
+        <% } %>
+    </ul>
+    <!--Welcome the current user if they exist (must be conditional then)-->
+    <% if (user) { %>
+        <p id="welcomeUser">Welcome, <%= user.email %></p>
+    <% } %>
+     <!--Form for signing up user and error messages-->
+        <!--ADD CSS LATER-->
+        <form class="logForm">
+            <h2>Login</h2>
+            <!--Should be the same as signing up-->
+            <label for="email" id="emailLabel">Email</label>
+            <input type="text" name="email" required />
+            <div class="email error"></div>
+            <label for="password" id="passLabel">Password</label>
+            <input type="password" name="password" required />
+            <div class="password error"></div>
+            <button id="subLog">Login</button> <!--Submit event will automatically be done-->
+        </form>
+    
+    <script>
+        const form = document.querySelector('form')
+        const emailError = document.querySelector('.email.error')
+        const passwordError = document.querySelector('.password.error')
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault() //Prevent the refresh when submitted
+
+            //Reset errors (clears errors so they don't keep happening)
+            emailError.textContent = ''
+            passwordError.textContent = ''
+
+            //Get the values (using name, can use form.<name>)
+            const email = form.email.value
+            const password = form.password.value
+
+            //log to console (the console in the developer tools page!! not powershell!)
+            //Send request to the login using fetch
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    //Can pass it as so as it has the same name as the value or use email: email, password: password
+                    body: JSON.stringify({ email, password }),
+                    //Send it as json to the server and DB if succusful
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                //get data out of it using data method
+                const data = await res.json()
+                //log to console to check it
+                console.log(data)
+
+                //Handeling any errors in signup
+                if (data.errors) {
+                    //Change text content to show it
+                    emailError.textContent = data.errors.email
+                    passwordError.textContent = data.errors.password
+                    //Reset errors everytime we submit; so when it's updated to a valid user we won't get errors still!
+                
+                }
+                //Detect if we now have a user and if we do send them to the home page
+                if (data.user) {
+                    //Redirect the user to the home page
+                    location.assign('/')
+                }                
+            } catch (err) {
+                console.log(err)
+            }
+        })
+    </script>
+    
+    </body>
+</html>

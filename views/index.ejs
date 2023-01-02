@@ -1,0 +1,63 @@
+<!--Final Project HTML-->
+
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet"
+        type="text/css"
+        href="index.css">
+    <title>Password Generator</title>
+ </head>
+ <body>
+
+    <!--Title-->
+    <header>
+    <!--<img class="logo" src="/images/teamLogo.png" alt="Team Logo"/>-->
+    <div class="flexbox-container">
+        <div class="flexbox-item flexbox-item-1">
+            <!--Title-->
+            <h1 id="title">The Password Generator</h1>
+        </div>
+    </div>
+
+    <!--Github information-->
+    <a class="github" href="https://github.com/MikeKarnezisLewisU/FinalProjectScrumandCoke"><img src="github.svg"></a>
+
+    <!--Header for the home page-->
+    <h1 id="heading">Home</h1>
+    </header>
+
+    <!--Description of the application-->
+    <p id="describe">The password generator application can be used to generate unique, reliable<br>
+                    passwords with a quick click of a button. Our application uses parameters<br>
+                    of your choice to help increase randomness and uniqueness in order to create<br>
+                    the strongest passwords that you can use for whatever you want. You can create<br>
+                    an account in order to keep a log of the passwords you've created that you can<br>
+                    access at any time. Or you can choose to not create an account and use it instead,<br>
+                    but you will be unable to access any of the past passwords that you've generated.<br>
+                    </p>
+
+    <!--Navigation Bar-->
+    <ul class="horzbar">
+        <li><a href="/" id="home">Home</a></li>
+        <li><a href="/generate" id="generate">Generate</a></li>
+        <li><a href="/about" id="about">About</a></li>
+        
+        <!--To go to the login page or signup page (need to make conditionally using ejs properties)-->
+        <% if (user) { %>
+            <li><a href="/profile" id="profile">Profile</a></li>
+            <li><a href="/logout" id="logout">Logout</a></li>
+        <% } else { %>
+            <li><a href="/login" id="login">Login</a></li>
+            <li><a href="/signup" id="signup">Sign Up</a></li>
+        <% } %>
+    </ul>
+
+    <!--Welcome the current user if they exist (must be conditional then)-->
+    <% if (user) { %>
+        <p id="welcomeUser">Welcome, <%= user.email %></p>
+    <% } %>
+
+   </body>
+</html>

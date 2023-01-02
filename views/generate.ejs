@@ -1,0 +1,307 @@
+<!--Password Generator HTML-->
+
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet"
+        type="text/css"
+        href="generate.css">
+    <title>Generator</title>
+ </head>
+ <body>
+    <!--Title-->
+    <header>
+    <!--<img class="logo" src="/images/teamLogo.png" alt="Team Logo"/>-->
+    <div class="flexbox-container">
+        <div class="flexbox-item flexbox-item-1">
+            <h1 id="title">Generator</h1>  
+        </div>
+    </div>
+
+    <!--Main header for the generator page-->
+    <h1 id="genTitle">Generate a Password Using our Generator</h1> 
+
+    <!--Directions--> 
+    <h1 id="directions">Fill in the required parameters below in order<br>
+        to generate a password using our generator tool.</h1>
+    </header>
+
+
+
+    <!--Area will user will enter the paramters needed to generate a password-->
+    <div class ="genContainer">
+        <!--For the directions-->
+        <div class ="genContainer-item-1">
+        </div>
+        <!--For the parameters and the generated password-->
+        <div class ="genContainer-item-2">
+            <!--Directions-->
+            <h1 id="paramTitle">Parameters</h1>
+        </div>
+    </div>
+    
+    <!--Parameter for how many characters the user wants to use-->
+    <div class="passLength">
+        <label id="passLen">Password Length:</label>
+        <select id="lengthID">
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+        </select>
+        <br>
+    </div>
+
+    <!--Parameter for how many letters the user wants -->
+    <div class="letterSelection">
+        <label id="letter">How Many Letters?</label>
+        <input type="text" id="myLetterText" value="1" style="width: 15px;">
+        <!--
+        <select id="letterID">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+        </select>
+        -->
+        <br>
+    </div>
+    
+
+    <!--Parameter for if the user wants any special characters (0 for no, 1 for yes)-->
+    <div class="specialCharSelection">
+        <label id="specialChar">How Many Special Characters?</label>
+        <input type="text" id="mySpecialsText" value="1" style="width: 15px;">
+        <!--
+        <select id="specialCharID">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+        </select>
+        -->
+        <br>
+    </div>
+
+    <!--Parameter for if the user wants any numbers (0 for no, 1 for yes)-->
+    <div class="numberSelection">
+        <label id="numbers">How Many Numbers?</label>
+        <input type="text" id="myNumText" value="1" style="width: 15px;">
+        <!--
+        <select id="numbersID">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+        </select>
+        -->
+        <br>
+    </div>
+
+    <!--Parameter for the day of the week-->
+    <!--
+    <div class="daySelection">
+        <label id="days">Day of the week:</label>
+        <select id="dayID">
+            <option value="mon">Monday</option>
+            <option value="tue">Tuesday</option>
+            <option value="wed">Wednesday</option>
+            <option value="thu">Thursday</option>
+            <option value="fri">Friday</option>
+            <option value="sat">Saturday</option>
+            <option value="sun">Sunday</option>
+        </select>
+        <br>
+    </div>
+    -->
+
+    <!--Parameter for the time of the day-->
+    <!--
+    <div class="dayTime">
+        <label id="time">Day of the week:</label>
+        <select id="timeID">
+            <option value="morning">Morning</option>
+            <option value="afternoon">Afternoon</option>
+            <option value="night">Night</option>
+        </select>
+        <br>
+    </div>
+    -->
+
+    <!--Textbox where the password will be generated to-->
+    <!-- <input type="text" id="genPassword" name="password" value="Generated pswd" readonly><br> -->
+    <span id="pretense">Your generated password is: </span><span id="generate_output"></span>
+
+    <!--Button to generate a password-->
+    <button type="button" id="btnGenerate" onclick="sendCommand()" value="run external javascript">Send</button> 
+
+    <!--Show the save option only when a user is logged in-->
+    <% if (user) { %>
+        <button type="button" id="saveButton" onclick="savePassword()" style="visibility:hidden;">Save Password</button>
+    <% } %>
+
+    <!--Github information-->
+    <a class="github" href="https://github.com/MikeKarnezisLewisU/FinalProjectScrumandCoke"><img src="github.svg"></a>
+
+    <!--Navigation Bar-->
+    <ul class="horzbar">
+        <li><a href="/" id="home">Home</a></li>
+        <li><a href="/generate" id="generate">Generate</a></li>
+        <li><a href="/about" id="about">About</a></li>
+  
+        <!--To go to the login page or signup page (need to make conditionally using ejs properties)-->
+        <% if (user) { %>
+            <li><a href="/profile" id="profile">Profile</a></li>
+            <li><a href="/logout" id="logout">Logout</a></li>
+        <% } else { %>
+            <li><a href="/login" id="login">Login</a></li>
+            <li><a href="/signup" id="signup">Sign Up</a></li>
+        <% } %>
+    </ul>
+
+    <!--Welcome the current user if they exist (must be conditional then)-->
+    <% if (user) { %>
+        <p id="welcomeUser">Welcome, <%= user.email %></p>
+
+        <!--Hidden element to be able to access the current user name-->
+        <p id="currentUser" hidden><%= user.email %></p>
+
+    <% } %>
+
+
+
+
+        <script>
+            /**
+            * sends 4 parameters to the generator 
+            * retrieves generated password from sever end
+            * No Math allowed script side
+            */ 
+            var password = "" //Make password global to use in other functions (so save function can save a password generated in the sendCommand() function)
+
+            async function sendCommand(){
+                password = await sendInput()
+                document.getElementById("generate_output").innerHTML = password
+                console.log("Password in the sendCommand:", password)
+
+                //Make the save button visible whenever a password is generated and user is signed in
+                try {
+                    //If we are able to get a current user than we should make the save button visible to them when they generate a password
+                    currentUser = document.getElementById("currentUser").innerHTML
+                    //console.log(typeof(currentUser))
+                    //console.log("Current User: " + currentUser)
+                    document.getElementById("saveButton").style.visibility = "visible"
+                } catch {
+                    console.log("No user logged in.")
+                }
+                
+            }
+
+            /* 
+            * WARNING fetch command fails suspecting error with recognizing the js file
+            * ||Uncaught TypeError TypeError: Failed to fetch||
+            */
+            async function sendInput(){
+                const letters = document.getElementById("myLetterText").value
+                const digits = document.getElementById("myNumText").value
+                const specials = document.getElementById("mySpecialsText").value
+                const theLeng = document.getElementById("lengthID").value
+                const toSend = [letters, digits, specials, theLeng]
+                //console.log("generated variable:", generated)
+                console.log("info to send to serverside for generating:",toSend)
+                const response = await fetch('/send-Input?letters='+letters+'&digits='+digits+'&specials='+specials+'&theLeng='+theLeng)
+                const responseText = await response.text()
+                console.log("Generated Password:",responseText)
+                return responseText
+            }
+
+
+            //Function to save a password
+            async function savePassword(userEmail) {
+                console.log("Clicked save password button.")
+                userEmail = document.getElementById("currentUser").innerText
+                
+                if (password == "") {
+                    console.log("Undefined Password!!!!")
+                }
+                
+                //LEAVE OFF HERE FOR JACK
+                console.log(password) //Check to see if the correct password is coming in SUCCESS GET PASSWORD SAVED TO DB!!
+
+                //Find the email of current user
+                console.log("The current user:", userEmail, "type is:", typeof(userEmail))
+
+                //Now add to the saved passwords array in the database
+                //Need to use encodeURIComponent(password) in order to send special chracters over to the server side
+                const saving = await fetch('/save-password?password='+encodeURIComponent(password)+'&email='+encodeURIComponent(userEmail))
+                const responseText = await saving.text()
+
+                console.log("Out of the server", responseText)
+
+                //Hide the save button after saving a current password so you don't repeat saving the same password
+                document.getElementById("saveButton").style.visibility = "hidden"
+
+            }
+
+        </script>
+   </body>
+</html>

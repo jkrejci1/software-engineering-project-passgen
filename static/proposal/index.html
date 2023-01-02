@@ -1,0 +1,93 @@
+<!--Final Project Proposal HTML-->
+
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0", charset="UTF-8">
+      <link rel="stylesheet"
+        type="text/css"
+        href="prop.css">
+    <title>Project Proposal</title>
+ </head>
+ <body>
+
+    <!--Title-->
+    <header>
+    <div class="flexbox-container">
+        <div class="flexbox-item flexbox-item-1"></div>
+    </div>
+    <h1 id="title">ScrumAndCoke</h1>
+    <h1 id="headingone">Final Project Proposal<br>(LAST UPDATED: 3/27/2022)</h1>
+    <h1 id="basicHeader">Password Generator</h1>
+    </header>
+
+    <!--Here is the information that is about our project-->
+
+    <!--Team Members (list format)-->
+    <table class="teamList" style="width:10%; margin-left: auto; margin-right: auto">
+        <tr>
+            <td id="listHeader">TEAM MEMBERS</td>
+        </tr>
+        <tr>
+            <td>Jack Krejci</td>
+        </tr>
+        <tr>
+            <td>Michael Karnezis</td>
+        </tr>
+        <tr>
+            <td>Simeon Ngalamou</td>
+        </tr>
+        <tr>
+            <td>Tyler Quinn</td>
+        </tr>
+    </table>
+
+    <!--Application Overview-->
+    <h1 id="basicHeader">Application Overview</h1>
+    <p>Website that generates a random password based on input and time of day. Inputs will use parameters such as using at least one <br>
+        capital letter or a digit. It will also make use of a database full of phrases that can be mixed around in the generated password <br>
+        as phrases are known to be much stronger when creating a password instead of random letters or numbers. Users will be able to create<br>
+        an account on our website with a username and password, and the generation of passwords should be unique for every user so that an <br>
+        adversary can't use this website to just generate passwords that someone coudl've gotten from this website and brute force their way<br>
+        into any accounts they have set up with anybody else. This would be a big problem, and it's important that such a thing will never<br>
+        happen in order to protect our users and make them feel confident in our product.</p>
+
+    <!--TEAM NOTES: Just need to type your ideas in the paragraph tags and it should be good-->
+    <!--Technology Overview-->
+    <h1 id="basicHeader">Technology Overview</h1>
+    <p>This site will utilize a variation of the MEAN stack which includes MongoDB for document database management, Node.js, <br> 
+        Express, and HTML, CSS, and vanilla JavaScript (over Angular) on the client-side. Microsoft Azure is the cloud <br>
+        computing service that will be employed for hosting and the project will be managed on GitHub with Git Version Control. 
+    </p>
+
+    <!--Feature List-->
+    <h1 id="basicHeader">Feature List</h1>
+    <List>
+        <ul>Simple user interface with various options</ul>
+        <ul>Allow's restrictions and parameters like Length or minimum required amount of numbers or special characters</ul>
+        <ul>different passwords generated from the same inputs at different times</ul>
+        <ul>database used to pull from when creating the password</ul>
+        <ul>server side algorithm that uses user input on a private variable to create a password</ul>
+    </List>
+
+    <!--Future Feature List-->
+    <h1 id="basicHeader">Future Feature List</h1>
+    <p>Future features will potentially include saving passwords with an ecryption key generator. 
+        <br>Each user will be given an id and a key to reconstruct their passwords instead of saving them server side.
+    </p>
+
+    <!--Basic Technical Features-->
+    <h1 id="basicHeader">Basic Technical Features</h1>
+    <p>Technical features that will be implemented which fall within the scope of class activities include designing an <br>
+        appealing user interface through front-end web programming with HTML, CSS, and vanilla JavaScript, <br>
+        the deployment of this application to the web through Microsoft Azure, as <br> well as server-side functionality with Node.js. 
+    </p>
+
+    <!--Advanced Technical Features-->
+    <h1 id="basicHeader">Advanced Technical Features</h1>
+    <p>Advanced technical features that will be implemented to exceed the scope of class content include<br> 
+        user authentication and data collection via MongoDB database management.
+    </p>
+
+   </body>
+</html>
