@@ -1,8 +1,5 @@
-# Node.js and Express Hosted on Microsoft Azure Template
-This repository serves as a template that can be used to create a Node.js and Express based website that can easily
-be hosted on Microsoft Azure.
+# Node.js and Express Hosted Software Engineering Project
+The purpose of this project is to create a web app allows a user to generate passwords, and
+save them to a user profile if created.
 
-
-
-# https://uxwing.com/github-icon/
-This site was used to access the free use GitHub svg icon
+Website: https://password-generator.azurewebsites.net/
